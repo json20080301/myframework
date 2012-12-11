@@ -1,1 +1,5 @@
-fdsfdsafdafdafda
+fdsfdsafdafdafdafdsfsafafdafda
+2011-12-29 15:51:35,969 - ResourceManager : unable to find resource 'tmpl/DAOImpl.tmpl' in any resource loader.
+2011-12-29 15:52:25,858 - ResourceManager : unable to find resource 'model.tmpl' in any resource loader.
+2011-12-29 15:53:00,308 - ResourceManager : unable to find resource 'model.tmpl' in any resource loader.
+SERVER CHANGE@@@@
