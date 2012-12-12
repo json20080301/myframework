@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<mapper namespace="velocity" useCache="true" >
+	<sql id="pageqry" flushCache="true"> 
+	<![CDATA[
+		 select owner , tablespace_name from all_all_tables where 1=1
+		 #if( $owner && $owner!='' ) 
+		   and  $StringUtil.parseToSqlOr($owner , 'owner')   
+		 #end 
+		 
+		 #if( $owner && $owner!='' ) 
+		   and  owner = :owner   
+		 #end 
+	  ]]>
+	</sql>
+	   
+</mapper> 

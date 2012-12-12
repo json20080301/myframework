@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper 
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper">
+	<!--1.甯歌鏌ヨ  -->
+	<select id="pageqry" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select owner , tablespace_name from all_all_tables where 1=1 
+		<if test="owner!=null"> <!-- 绌哄瓧绗︿覆杞寲涓篘ull -->
+			<![CDATA[
+			 and owner = #{owner} 
+			]]> 
+		</if>
+	</select>
+	
+	<!--2.瓒呮椂鏌ヨ  -->
+	<select id="pageqrytimeout" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select a.owner , a.tablespace_name from all_all_tables a,
+	       all_all_tables b,
+	       all_all_tables c,
+	       all_all_tables d,
+	       all_all_tables e
+	</select>
+	
+	<!--3.鍙傛暟鏁版嵁绫诲瀷杞崲 鍙� 澶氬彿鐮佹煡璇�-->	
+	<select id="qryAll" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select owner , tablespace_name from all_all_tables
+		 <![CDATA[ 
+              WHERE ROWNUM <  #{page , typeHandler=org.myframework.mybatis.StrToNumTypeHandler } 
+          ]]>
+          
+        
+		<if test="ownerList!=null"> AND 
+			<foreach item="item" index="index" collection="ownerList" open="("
+				separator="OR" close=")"  >
+				owner =  #{item} 
+			</foreach>
+		</if>
+		
+		
+		<if test="pagesList!=null">AND
+			<foreach item="item" index="index" collection="pagesList" open="("
+				separator="OR" close=")"  >
+				ROWNUM =  #{item typeHandler=org.myframework.mybatis.StrToNumTypeHandler} 
+			</foreach>
+		</if>
+		
+	</select>
+	
+	<!--4.娴嬭瘯闈炵紦瀛�  -->
+	<select id="qryNoCache" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+	 select * from a
+    </select>
+    
+    
+    <!--5.娴嬭瘯浜嬪姟  -->
+	<select id="testRollBack" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+	delete from demo where pid=
+    </select>
+
+
+
+</mapper> 
